@@ -22,10 +22,11 @@ const login = async (req, res) => {
   if (!user) {
     throw new UnauthenticatedError("Invalid email or password");
   }
-  //   const isValidPassword = await user.comparePassword(password);
-  //   if (!isValidPassword) {
-  //     throw new UnauthenticatedError("Invalid email or password");
-  //   }
+  const isValidPassword = await user.comparePassword(password);
+  if (!isValidPassword) {
+    throw new UnauthenticatedError("Invalid email or password");
+  }
+
   const token = user.createJWT();
   res.status(StatusCodes.OK).json({ user: { name: user.name }, token });
 };
