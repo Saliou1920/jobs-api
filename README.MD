@@ -114,4 +114,5 @@ This API is built to manage career. This API helps people organize their job app
 
 ## Author ✨
 
-- Linkedin - [@Saliou](https://saliou1920.github.io/Images-Gallery/)
+- [Website](https://salihou.netlify.app/)
+- Linkedin - [@Saliou](https://www.linkedin.com/in/saliou-diop-527741112//)
