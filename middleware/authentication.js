@@ -9,12 +9,12 @@ const auth = async (req, res, next) => {
   }
   const token = authHeader.split(" ")[1];
   try {
-    const { id, name } = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(id).select("-password");
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(payload.userId);
     if (!user) {
       throw new UnauthenticatedError("Invalid token");
     }
-    req.user = user;
+    req.user = { userId: payload.userId, name: user.name };
     next();
   } catch (err) {
     throw new UnauthenticatedError("Invalid token");
