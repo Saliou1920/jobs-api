@@ -1,69 +1,117 @@
-#### Setup
+# GET Products API
 
-```bash
-npm install && npm start
-```
+## Welcome! 👋
 
-#### Database Connection
+Test the API [Here 👋](https://s-jobs-api.herokuapp.com/api-docs/)
 
-1. Import connect.js
-2. Invoke in start()
-3. Setup .env in the root
-4. Add MONGO_URI with correct value
+## Table of contents 🙂
 
-#### Routers
+- [Overview](#overview)
+  - [Routes](#routes)
+  - [Built with](#built-with)
+- [Author](#author)
 
-- auth.js
-- jobs.js
+## Overview 🍡
 
-#### User Model
+This API is built to manage career. This API helps people organize their job applications. You need to register or login to use this api.
 
-Email Validation Regex
-
-```regex
-/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-```
+## Routes 🔥
 
 #### Register User
 
-- Validate - name, email, password - with Mongoose
-- Hash Password (with bcryptjs)
-- Save User
-- Generate Token
-- Send Response with Token
+<code>POST: https://s-jobs-api.herokuapp.com/api/v1/auth/register</code>
+
+```json
+{
+  "name": "name",
+  "email": "email",
+  "password": "password"
+}
+```
 
 #### Login User
 
-- Validate - email, password - in controller
-- If email or password is missing, throw BadRequestError
-- Find User
-- Compare Passwords
-- If no user or password does not match, throw UnauthenticatedError
-- If correct, generate Token
-- Send Response with Token
+<code>POST: https://s-jobs-api.herokuapp.com/api/v1/auth/login</code>
 
-#### Mongoose Errors
-
-- Validation Errors
-- Duplicate (Email)
-- Cast Error
-
-#### Security
-
-- helmet
-- cors
-- xss-clean
-- express-rate-limit
-
-Swagger UI
-
-```yaml
-/jobs/{id}:
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: the job id
+```json
+{
+  "email": "email",
+  "password": "password"
+}
 ```
+
+#### Post Job
+
+<code>POST: https://s-jobs-api.herokuapp.com/api/v1/jobs</code>
+
+```json
+{
+  "company": "company",
+  "position": "position"
+}
+```
+
+#### Get All Jobs
+
+<code>GET: https://s-jobs-api.herokuapp.com/api/v1/jobs</code>
+
+```json
+{
+  "jobs": [
+    {
+      "status": "Applied",
+      "_id": "61d654faa0ee313eef273814",
+      "company": "Shopify",
+      "position": "backend dev",
+      "createdBy": "61d65251e061113a43f54de0",
+      "createdAt": "2022-01-06T02:33:30.744Z",
+      "updatedAt": "2022-01-06T06:34:57.604Z",
+      "__v": 0
+    },
+    {
+      "status": "Applied",
+      "_id": "61d68d51f077880004bff429",
+      "company": "Google",
+      "position": "Backend Dev",
+      "createdBy": "61d65251e061113a43f54de0",
+      "createdAt": "2022-01-06T06:33:53.167Z",
+      "updatedAt": "2022-01-06T06:33:53.167Z",
+      "__v": 0
+    }
+  ],
+  "count": 2
+}
+```
+
+#### Get Single Job
+
+<code>GET: https://s-jobs-api.herokuapp.com/api/v1/jobs/{:id}</code>
+
+#### Update Job
+
+<code>PATCH: https://s-jobs-api.herokuapp.com/api/v1/jobs/{:id}</code>
+
+```json
+{
+  "company": "company",
+  "position": "position"
+}
+```
+
+#### Delete Job
+
+<code>DELETE: https://s-jobs-api.herokuapp.com/api/v1/jobs/{:id}</code>
+
+## Built with 🧰
+
+- Node JS
+- Express
+- Mongo DB
+- Mongoose
+- Json Web Token
+- Helmet
+- Swagger UI
+
+## Author ✨
+
+- Linkedin - [@Saliou](https://saliou1920.github.io/Images-Gallery/)
